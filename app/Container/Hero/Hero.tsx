@@ -17,7 +17,6 @@ async function getData() {
 const Hero = async () => {
 
     const data = (await getData()) as unknown as Interface[];
-    console.log(data)
 
     return (<>
 
