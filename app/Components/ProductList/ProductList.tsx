@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { Interface } from '../../Constants/interface';
 import { urlFor } from '@/app/Constants/imageBuilder';
@@ -30,7 +29,7 @@ const ProductList = async () => {
                                 initial={{ y: 100, scale: .6 }}
                                 whileInView={{ y: 0, scale: 1 }}
                                 animate={{ y: 100, scale: .6 }}
-                                className='hidden md:group-hover:flex z-10 absolute h-[250%] w-[25%] -top-[70%] right-[25%]'
+                                className='hidden md:group-hover:flex z-8 absolute h-[250%] w-[25%] -top-[70%] right-[25%]'
                             >
                                 <Image
                                     src={urlFor(item.image).url()} width={500} height={500}
