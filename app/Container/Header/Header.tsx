@@ -22,7 +22,7 @@ const Header = () => {
 
     return (
         <div>
-            <header className='fixed top-0 w-full bg-white dark:bg-black z-10 backdrop-blur-md bg-opacity-60 border-b border-gray-50 border-opacity-70'>
+            <header className='fixed top-0 w-full bg-whit dark:bg-black z-10 backdrop-blur-md bg-opacity-60 border-b border-gray-50 border-opacity-70'>
                 <div className='flex px-3 py-4 justify-between items-center lg:max-w-[1560px] m-auto'>
 
                     <div className='flex gap-12 items-baseline'>

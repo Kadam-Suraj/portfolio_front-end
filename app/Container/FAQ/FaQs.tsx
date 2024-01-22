@@ -4,6 +4,14 @@ import { Interface } from '@/app/Constants/interface';
 import { PortableText } from '@portabletext/react';
 import { IoChevronDownOutline } from 'react-icons/io5';
 
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+  } from "@/components/ui/accordion"
+  
+
 async function getData() {
     const data = await client.fetch(`*[_type == 'faq']`);
     return data as Interface;
@@ -14,22 +22,16 @@ const FaQs = async () => {
     return (
         <div>
             <div>{data.map((item, idx) => {
-                return <div key={idx} className={`${idx ? 'pt-4' : 'pt-0'}`}>
-                    <div className='flex flex-col gap-5 cursor-pointer border-b pb-4 border-[#737373] group select-none'>
-                        <div className='flex items-center justify-between gap-5'>
-                            <h3 className='text-[1.5em] font-semibold'>{item.question}</h3>
-                            <div
-                            >
-                                <IoChevronDownOutline className='text-[2em] group-hover:-rotate-180' />
-                            </div>
-                        </div>
-                        <div
-                            className={`dark:text-white dark:text-opacity-80 hidden group-hover:block`}>
-                            <PortableText value={item.answer}></PortableText>
-                        </div>
-                    </div>
-                </div>
+                return   <Accordion key={idx} type="single" collapsible className="w-full">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>{item.question}</AccordionTrigger>
+                  <AccordionContent>
+                  <PortableText value={item.answer}></PortableText>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             })}</div>
+
         </div>
     )
 }
