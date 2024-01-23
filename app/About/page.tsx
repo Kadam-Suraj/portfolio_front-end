@@ -34,7 +34,7 @@ const page = () => {
             </div>
             <Strip />
             <div className='justify-center lg:max-w-[1560px] mx-auto mt-48 mb-28 px-4'>
-                <div className='flex justify-between lg:gap-32 gap-44 max-sm:flex-col'>
+                <div className='flex justify-between lg:gap-32 gap-14 max-sm:flex-col'>
                     <div className='md:w-1/2'>
                         <Education />
                     </div>

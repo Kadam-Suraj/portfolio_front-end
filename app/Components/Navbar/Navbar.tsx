@@ -5,7 +5,7 @@ import Link from 'next/link';
 const Navbar = () => {
 
     return (
-        <div className='sm:flex gap-3 hidden'>
+        <div className='min-[880px]:flex gap-3 hidden'>
             <nav>
                 <ul className='gap-12 flex text-[1.5em] group'>
                     {menu.map((item) => {

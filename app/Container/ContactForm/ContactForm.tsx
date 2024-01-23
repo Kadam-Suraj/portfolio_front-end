@@ -41,7 +41,8 @@ const contact = () => {
                             <label htmlFor="" className='pt-5'>Tell me a bit more about what are you looking for?</label>
                             <textarea className='dark:bg-[#1C1C22] bg-[#f8f8f8] px-8 py-5 md:px-5 md:py-3 rounded-md outline-none w-full resize-none' rows={5} placeholder='Write something' required />
                             <div className='pt-5'>
-                                <Button data={'Submit Now'}></Button>
+                                <Button data='Submit Now'>
+                                </Button>
                             </div>
                         </div>
                     </form>

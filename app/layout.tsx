@@ -1,10 +1,19 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter as FontSans } from "next/font/google"
 import './globals.css';
 import Header from './Container/Header/Header';
 import Footer from './Container/Footer/Footer';
+import { ThemeProvider } from '@/components/theme-provider';
 
-const inter = Inter({ subsets: ['latin'] })
+import { cn } from "../lib/utils"
+ 
+export const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
+
+
+// const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'My Portfolio',
@@ -19,10 +28,20 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.className}`}>
+      <body className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}>
+        <ThemeProvider
+         attribute="class"
+         defaultTheme="system"
+         enableSystem
+         disableTransitionOnChange
+        >
         <Header />
         {children}
         <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )
