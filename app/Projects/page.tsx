@@ -24,13 +24,13 @@ const page = async () => {
                         <h1 className='font-bold text-[3.3em] md:w-1/2'>
                             Have a look at my <span className='bg-gradient-to-r bg-clip-text text-transparent from-[#B16CEA] via-[#FF5E69] to-[#FFA84B]'>projects.</span>
                         </h1>
-                        <p className='md:w-1/2 text-opacity-70 text-white'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem distinctio voluptatibus itaque quisquam libero et tempore quae. Quasi, vitae doloremque doloribus dolore harum fugit! Minus ipsum quaerat ea, reiciendis perspiciatis vel cupiditate accusamus, molestias veniam doloribus consequatur nostrum. Cupiditate, consequatur.</p>
+                        <p className='md:w-1/2 text-opacity-60 text-black dark:text-slate-300'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem distinctio voluptatibus itaque quisquam libero et tempore quae. Quasi, vitae doloremque doloribus dolore harum fugit! Minus ipsum quaerat ea, reiciendis perspiciatis vel cupiditate accusamus, molestias veniam doloribus consequatur nostrum. Cupiditate, consequatur.</p>
                     </div>
                     <div className='flex flex-wrap gap-16 justify-center'>
                         {data.map((item, idx) => {
                             return <div key={idx}>
                                 <div>
-                                    <div className='max-w-[25em] rounded-xl bg-[#111111]'>
+                                    <div className='max-w-[25em] rounded-xl bg-[#f1f1f1] dark:bg-[#1d1d1d]'>
                                         <Image className='rounded-t-xl w-full h-full' src={urlFor(item.image).url()} alt={item.name} width={800} height={800} />
                                         <div className='p-5'>
                                             <h2 className='font-bold text-[1.7em]'>{item.name}</h2>
