@@ -1,20 +1,27 @@
 import React from 'react'
 import { menu } from '../../Constants/Navmenu';
 import Link from 'next/link';
-import Button from '../Button/Button';
+import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
 
     return (
-        <div className='min-[880px]:flex gap-3 hidden'>
+        <div className='min-[880px]:flex gap-3 hidden self-center'>
             <nav>
-                <ul className='gap-12 flex text-[1.5em] group'>
+                <ul className='gap-12 flex text-[1.1em] group '>
                     {menu.map((item) => {
                         if (item === 'Home') return <Link key={item} href={`/`}>
-                            <li key={item} className='font-light active:border-b rounded-xl pb-2 px-4'>{item}</li>
+                            <li key={item} className='font-light rounded-xl'>
+                                <Button variant={'link'}>
+                                    {item}
+                                </Button>
+                            </li>
                         </Link>
                         return <Link key={item} href={`/${item}`}>
-                            <li className='font-light active:border-b rounded-xl pb-2 px-4'>{item}</li>
+                            <li className='font-light rounded-xl'>
+                                <Button variant={'link'}>
+                                    {item}
+                                </Button></li>
                         </Link>
                     })}
                 </ul>

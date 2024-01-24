@@ -15,4 +15,5 @@ export interface Interface {
     company: string;
     role: string;
     working_period: any;
+    link: String
 }

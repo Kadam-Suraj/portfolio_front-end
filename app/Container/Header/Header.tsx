@@ -24,10 +24,10 @@ const Header = () => {
     return (
         <div>
             <header className='fixed top-0 left-0 w-full bg-white dark:bg-[#00000093] bg-opacity-40
-             z-10 backdrop-blur-md border-b dark:border-gray-50 border-black border-opacity-70'>
-                <div className='flex px-3 py-4 justify-between items-center lg:max-w-[1560px] m-auto'>
+             z-10 backdrop-blur-md border-b dark:border-gray-50 border-black border-opacity-70 items-center'>
+                <div className='flex px-3 py-3 justify-between items-center lg:max-w-[1560px] m-auto'>
 
-                    <div className='flex gap-12 items-baseline'>
+                    <div className='flex gap-12 items-end'>
                         <div>
                             <Logo />
                         </div>

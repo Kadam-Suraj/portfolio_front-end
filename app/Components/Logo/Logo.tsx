@@ -6,7 +6,7 @@ import { image } from '@/app/Constants/index';
 const Logo = () => {
     return (
         <div className="logo">
-            <Link href='/' className='font-bold text-[2.1em] flex items-baseline'><Image src={image.logo} alt='logo' className='w-[2em] invert dark:invert-0'></Image><span className='text-[.7em]'>.dev</span></Link>
+            <Link href='/' className='font-bold text-[2.1em] flex items-baseline'><Image src={image.logo} alt='logo' className='w-[1em] invert dark:invert-0'></Image><span className='text-[.7em]'>.dev</span></Link>
         </div>
     )
 }

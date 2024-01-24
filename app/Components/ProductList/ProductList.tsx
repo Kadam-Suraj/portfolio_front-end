@@ -5,6 +5,7 @@ import { client } from '../../Client/client';
 import { MdOutlineArrowOutward } from "react-icons/md";
 import Image from 'next/image';
 import { Motion } from '../MotionDiv/MotionDiv';
+import { delay } from 'framer-motion';
 
 async function getData() {
     const data = await client.fetch(`*[_type == 'development']`);
@@ -23,18 +24,15 @@ const ProductList = async () => {
                             <span className='text-[1.2em] md:block hidden group-hover:animate-ping'>
                                 <MdOutlineArrowOutward />
                             </span>
-                            <div className='md:flex hidden absolute h-[250%] w-56 -top-[70%] right-[25%]'>
-                            </div>
                             <Motion
-                                initial={{ y: 100, scale: .6 }}
-                                whileInView={{ y: 0, scale: 1 }}
-                                animate={{ y: 100, scale: .6 }}
-                                className='hidden md:group-hover:flex z-8 absolute h-[250%] w-[25%] -top-[70%] right-[25%]'
+                                initial={{ y: 100, scale: .6, }}
+                                whileInView={{ y: 0, scale: 1, }}
+                                className='hidden md:group-hover:flex z-1 absolute h-[250%] w-[25%] -top-[70%] right-[25%]'
                             >
                                 <Image
                                     src={urlFor(item.image).url()} width={500} height={500}
                                     alt={item.name}
-                                    className='rounded-2xl w-full h-full object-cover'>
+                                    className='rounded-2xl w-full h-full object-cover' draggable={false}>
                                 </Image>
                             </Motion>
                         </div>
