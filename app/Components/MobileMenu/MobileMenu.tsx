@@ -19,7 +19,7 @@ const MobileMenu = ({ data , fnc }) => {
                             onClick={fnc}
                             >{item}</li>
                         </Link>
-                        return <Link key={idx} href={item}>
+                        return <Link key={idx} href={`/${item}`}>
                             <li
                              onClick={fnc}
                             >{item}</li>
