@@ -1,9 +1,10 @@
 export interface Interface {
     _id: string;
     name: string;
-    description: string;
+    description: any;
     image: string;
     caption: string;
+    tag: String
     attribute: string;
     about: string;
     question: string;

@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { image } from '../../Constants/index';
 import Image from 'next/image';
 import Logo from '@/app/Components/Logo/Logo';
-import {ModeToggle} from '../../../components/ui/theme-mode'
+import { ModeToggle } from '../../../components/ui/theme-mode'
 
 const Header = () => {
 
@@ -23,7 +23,7 @@ const Header = () => {
 
     return (
         <div>
-            <header className='fixed top-0 w-full bg-white dark:bg-[#00000093] bg-opacity-40
+            <header className='fixed top-0 left-0 w-full bg-white dark:bg-[#00000093] bg-opacity-40
              z-10 backdrop-blur-md border-b dark:border-gray-50 border-black border-opacity-70'>
                 <div className='flex px-3 py-4 justify-between items-center lg:max-w-[1560px] m-auto'>
 
@@ -34,9 +34,11 @@ const Header = () => {
                         <Navbar />
                     </div>
                     <div className='flex gap-6 items-center'>
-                        <Link href={'/Contact'}>
-                            <Button data={"LET'S TALK"} />
-                        </Link>
+                        <div className='max-[880px]:hidden'>
+                            <Link href={'/Contact'}>
+                                <Button>{"LET'S TALK"}</Button>
+                            </Link>
+                        </div>
                         <div className='flex min-[880px]:hidden'>
                             <div className='text-[3.5em] '>
                                 <span onClick={call

@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { Motion } from '../MotionDiv/MotionDiv';
 
 async function getData() {
-    const data = await client.fetch(`*[_type == 'projects']`);
+    const data = await client.fetch(`*[_type == 'development']`);
     return data as Interface;
 }
 
