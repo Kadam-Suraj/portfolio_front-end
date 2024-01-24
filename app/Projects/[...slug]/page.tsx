@@ -7,18 +7,25 @@ import { PortableText } from '@portabletext/react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
+import { MdOutlineChevronLeft } from "react-icons/md";
 
 async function getData() {
     const data = await client.fetch(`*[_type == 'projects']`);
-    return data as Interface;
+    return data as Interface[];
 }
 
-
 const slug = async ({ params }) => {
-    const data = (await getData()) as unknown as Interface[];
-
+    const data = (await getData());
     return (
         <div className='min-h-[65vh] py-40 lg:max-w-[1560px] mx-auto px-5'>
+            <div className='pb-10 flex items-center'>
+                <Link href={`/Projects`}>
+                    <Button>
+                        <span className='pr-3 text-xl'> <MdOutlineChevronLeft></MdOutlineChevronLeft> </span>
+                        {'Back'}
+                    </Button>
+                </Link>
+            </div>
             <div>{data.map((item, idx) => {
                 if (item._id == params.slug) {
                     return <div key={idx}>
@@ -37,7 +44,7 @@ const slug = async ({ params }) => {
                                     <PortableText value={item.description}></PortableText>
                                 </div>
                                 <div className='pt-10 w-fit flex self-end'>
-                                    <Link href={`${item?.link || ''}`} target={`${item.link? '_blank' : ''}`}>
+                                    <Link href={`${item?.link || ''}`} target={`${item.link ? '_blank' : ''}`}>
                                         <Button>{'View live version'}</Button>
                                     </Link>
                                 </div>
