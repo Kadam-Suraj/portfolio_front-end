@@ -1,10 +1,17 @@
-import React from 'react';
+'use client'
+import React, { FormEvent } from 'react';
 import { IoMdMail } from "react-icons/io";
 import { MdLocalPhone, MdOutlineDriveFileRenameOutline, MdCurrencyRupee } from "react-icons/md";
-import Button from '../../Components/Button/primaryButton';
-
+import { Button } from '@/components/ui/button';
+import { useToast } from "@/components/ui/use-toast"
 
 const contact = () => {
+    const { toast } = useToast()
+
+    const formHandler = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+    }
+
     return (
         <div>
             <div className='relative flex max-md:flex-col md:gap-12 gap-20 justify-between'>
@@ -21,7 +28,7 @@ const contact = () => {
                     </div>
                 </div>
                 <div className='flex w-10/12 md:w-1/2 self-center'>
-                    <form className='w-full'>
+                    <form className='w-full' onSubmit={formHandler}>
                         <div className='flex flex-col gap-4'>
                             <label htmlFor="" className='pt-5'>Your Name</label>
                             <div className='flex items-center relative'>
@@ -41,7 +48,13 @@ const contact = () => {
                             <label htmlFor="" className='pt-5'>Tell me a bit more about what are you looking for?</label>
                             <textarea className='dark:bg-[#1C1C22] bg-[#f8f8f8] px-8 py-5 md:px-5 md:py-3 rounded-md outline-none w-full resize-none' rows={5} placeholder='Write something' required />
                             <div className='pt-5'>
-                                <Button data='Submit Now'>
+                                <Button onClick={() => {
+                                    toast({
+                                        title: "Success",
+                                        description: "Thank you for your interest, w'll connect you soon",
+                                    })
+                                }}>
+                                    {'Submit Now'}
                                 </Button>
                             </div>
                         </div>

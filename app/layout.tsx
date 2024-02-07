@@ -6,6 +6,7 @@ import Footer from './Container/Footer/Footer';
 import { ThemeProvider } from '@/components/theme-provider';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { cn } from "../lib/utils"
+import { Toaster } from "@/components/ui/toaster"
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -41,6 +42,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <Toaster />
         </ThemeProvider>
         <SpeedInsights />
       </body>

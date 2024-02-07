@@ -5,7 +5,6 @@ import { urlFor } from '../Constants/imageBuilder';
 import Image from 'next/image';
 import Button from '../Components/Button/Button';
 import Link from 'next/link';
-import { MdOutlineArrowOutward } from 'react-icons/md';
 
 async function getData() {
     const data = await client.fetch(`*[_type == 'projects']`);
