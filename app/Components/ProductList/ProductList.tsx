@@ -30,7 +30,7 @@ const ProductList = async () => {
                                 className='hidden md:group-hover:flex z-1 absolute h-[250%] w-[25%] -top-[70%] right-[25%]'
                             >
                                 <Image
-                                    src={urlFor(item.image!).url()} width={500} height={500}
+                                    src={urlFor(item.image).url()} width={500} height={500}
                                     alt={item.name}
                                     className='rounded-2xl w-full h-full object-cover' draggable={false}>
                                 </Image>
