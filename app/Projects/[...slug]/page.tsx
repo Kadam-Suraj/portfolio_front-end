@@ -46,9 +46,11 @@ const slug = async ({ params }) => {
                                     <PortableText value={item.description}></PortableText>
                                 </div>
                                 <div className='pt-10 w-fit flex self-end'>
+                                    {item.link ? 
                                     <Link href={`${item.link ? item.link : ''}`} target={`${item.link ? '_blank' : ''}`}>
-                                        <Button>{item.link ? "View live version" : ""}</Button>
-                                    </Link>
+                                        <Button>View live version</Button>
+                                    </Link> : ''
+                                    }
                                 </div>
                             </div>
                         </div>
