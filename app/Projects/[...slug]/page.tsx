@@ -47,7 +47,7 @@ const slug = async ({ params }) => {
                                 </div>
                                 <div className='pt-10 w-fit flex self-end'>
                                     <Link href={`${item.link ? item.link : ''}`} target={`${item.link ? '_blank' : ''}`}>
-                                        <Button>View live version</Button>
+                                        <Button>{item.link ? "View live version" : ""}</Button>
                                     </Link>
                                 </div>
                             </div>
