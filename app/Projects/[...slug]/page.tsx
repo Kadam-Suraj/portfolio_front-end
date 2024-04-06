@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { MdOutlineChevronLeft } from "react-icons/md";
 
 async function getData() {
-    const data = await client.fetch(`*[_type == 'projects']`);
+    const data = await client.fetch(`*[_type == 'projects'] | order(_createdAt desc)`);
     return data as Interface[];
 }
 
