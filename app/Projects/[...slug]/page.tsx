@@ -9,19 +9,20 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { MdOutlineChevronLeft } from "react-icons/md";
-
+import { getProject } from '@/app/api/project';
 
 const slug = ({ params }) => {
     const [project, setProject] = useState([] as Interface[]);
 
+
     useEffect(() => {
         async function getData() {
-            const data = await client.fetch(`*[_type == 'projects'] | order(_createdAt desc)`);
-            setProject(data);
+            const data = await getProject(params.slug[0]);
+            setProject(data as any as Interface[]);
         }
         getData();
     }, [])
-    
+
     return (
         <div className='min-h-[65vh] py-40 lg:max-w-[1560px] mx-auto px-5'>
             <div className='pb-10 flex items-center'>

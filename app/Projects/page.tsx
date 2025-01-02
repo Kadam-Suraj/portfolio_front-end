@@ -1,25 +1,22 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import { Interface } from '../Constants/interface'
-import { client } from '../Client/client'
 import { urlFor } from '../Constants/imageBuilder';
 import Image from 'next/image';
 import Button from '../Components/Button/Button';
 import Link from 'next/link';
-
+import { getAllProjects } from '../api/project';
 
 const page = () => {
     const [project, setProject] = useState([] as Interface[]);
 
     useEffect(() => {
         async function getData() {
-            const data = await client.fetch(`*[_type == 'projects']`);
-            setProject(data);
+            const data = await getAllProjects();
+            setProject(data as any as Interface[]);
         }
         getData();
-    }, [])
-
-
+    }, []);
 
     return (
         <div>
