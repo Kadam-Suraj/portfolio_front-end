@@ -29,6 +29,7 @@
     "react-dom": "latest",
     "react-icons": "^5.0.1",
     "shadcn-ui": "latest",
+    "sharp": "^0.33.5",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7"
   },

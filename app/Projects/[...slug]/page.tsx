@@ -21,6 +21,7 @@ const slug = ({ params }) => {
         }
         getData();
     }, [])
+    
     return (
         <div className='min-h-[65vh] py-40 lg:max-w-[1560px] mx-auto px-5'>
             <div className='pb-10 flex items-center'>
