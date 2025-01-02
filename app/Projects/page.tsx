@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import { Interface } from '../Constants/interface'
 import { client } from '../Client/client'
 import { urlFor } from '../Constants/imageBuilder';
@@ -6,13 +7,19 @@ import Image from 'next/image';
 import Button from '../Components/Button/Button';
 import Link from 'next/link';
 
-async function getData() {
-    const data = await client.fetch(`*[_type == 'projects']`);
-    return data as Interface;
-}
 
-const page = async () => {
-    const data = (await getData()) as unknown as Interface[];
+const page = () => {
+    const [project, setProject] = useState([] as Interface[]);
+
+    useEffect(() => {
+        async function getData() {
+            const data = await client.fetch(`*[_type == 'projects']`);
+            setProject(data);
+        }
+        getData();
+    }, [])
+
+
 
     return (
         <div>
@@ -25,11 +32,11 @@ const page = async () => {
                         <p className='text-[1.2em] md:w-1/2 text-opacity-60 text-black dark:text-slate-300'>Explore my diverse range of projects and discover the exceptional craftsmanship and creativity that goes into each one. From innovative designs to meticulous attention to detail, my projects are a testament to quality and excellence. Whether you're seeking inspiration or looking for a unique addition to your space, my collection offers something for everyone. Take a closer look and be captivated by the beauty and ingenuity of my work.</p>
                     </div>
                     <div className='flex flex-wrap gap-16 justify-center'>
-                        {data.map((item, idx) => {
+                        {project.map((item, idx) => {
                             if (item.name === 'Personal Portfolio')
                                 return <div key={idx}>
                                     <div className='max-w-[25em] rounded-xl bg-[#f1f1f1] dark:bg-[#1d1d1d] hover:scale-105 duration-300 transition-all group'>
-                                        <Image className='rounded-t-xl w-full h-full pointer-events-none' src={urlFor(item.image).url()} alt={item.name} width={800} height={800} draggable={false}/>
+                                        <Image className='rounded-t-xl w-full h-full pointer-events-none' src={urlFor(item.image).url()} alt={item.name} width={800} height={800} draggable={false} />
                                         <div className='p-5'>
                                             <h2 className='font-bold text-[1.7em]'>{item.name}</h2>
                                             <span>{item.tag}</span>

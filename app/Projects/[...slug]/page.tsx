@@ -1,4 +1,5 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import { Interface } from '@/app/Constants/interface'
 import { client } from '@/app/Client/client'
 import { urlFor } from '@/app/Constants/imageBuilder';
@@ -9,15 +10,17 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { MdOutlineChevronLeft } from "react-icons/md";
 
-async function getData() {
-    const data = await client.fetch(`*[_type == 'projects'] | order(_createdAt desc)`);
-    return data as Interface[];
-}
 
-const slug = async ({ params }) => {
-    const data = (await getData());
+const slug = ({ params }) => {
+    const [project, setProject] = useState([] as Interface[]);
 
-    console.log(data)
+    useEffect(() => {
+        async function getData() {
+            const data = await client.fetch(`*[_type == 'projects'] | order(_createdAt desc)`);
+            setProject(data);
+        }
+        getData();
+    }, [])
     return (
         <div className='min-h-[65vh] py-40 lg:max-w-[1560px] mx-auto px-5'>
             <div className='pb-10 flex items-center'>
@@ -28,7 +31,7 @@ const slug = async ({ params }) => {
                     </Button>
                 </Link>
             </div>
-            <div>{data.map((item, idx) => {
+            <div>{project.map((item, idx) => {
                 if (item._id == params.slug) {
                     return <div key={idx}>
                         <div className='flex max-[880px]:flex-col justify-between items-center gap-10'>
@@ -46,10 +49,10 @@ const slug = async ({ params }) => {
                                     <PortableText value={item.description}></PortableText>
                                 </div>
                                 <div className='pt-10 w-fit flex self-end'>
-                                    {item.link ? 
-                                    <Link href={`${item.link ? item.link : ''}`} target={`${item.link ? '_blank' : ''}`}>
-                                        <Button>View live version</Button>
-                                    </Link> : ''
+                                    {item.link ?
+                                        <Link href={`${item.link ? item.link : ''}`} target={`${item.link ? '_blank' : ''}`}>
+                                            <Button>View live version</Button>
+                                        </Link> : ''
                                     }
                                 </div>
                             </div>
