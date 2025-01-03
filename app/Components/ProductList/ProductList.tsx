@@ -13,8 +13,8 @@ async function getData() {
 
 
 const ProductList = async () => {
-    const data = (await getData()) as unknown as Interface[];
-    console.log(data[2].name)
+    const data = (await getData()) as any as Interface[];
+
     return (
         <div>
             <div className='border-t-2 transition-all duration-700 select-none cursor-pointer'>
