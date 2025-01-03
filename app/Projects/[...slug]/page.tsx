@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { MdOutlineChevronLeft } from "react-icons/md";
-import { getProject } from '@/app/api/project';
+import { getProject } from '@/app/api/sanity';
 
 const slug = ({ params }) => {
     const [project, setProject] = useState([] as Interface[]);

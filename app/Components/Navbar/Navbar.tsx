@@ -6,20 +6,20 @@ import { Button } from '@/components/ui/button';
 const Navbar = () => {
 
     return (
-        <div className='min-[880px]:flex gap-3 hidden self-center'>
+        <div className='md:flex gap-3 hidden self-center'>
             <nav>
-                <ul className='gap-12 flex text-[1.1em] group '>
+                <ul className='flex items-center '>
                     {menu.map((item) => {
                         if (item === 'Home') return <Link key={item} href={`/`}>
-                            <li key={item} className='font-light rounded-xl'>
-                                <Button variant={'link'}>
+                            <li key={item} className=''>
+                                <Button variant={'ghost'}>
                                     {item}
                                 </Button>
                             </li>
                         </Link>
                         return <Link key={item} href={`/${item}`}>
-                            <li className='font-light rounded-xl'>
-                                <Button variant={'link'}>
+                            <li className=''>
+                                <Button variant={'ghost'}>
                                     {item}
                                 </Button></li>
                         </Link>

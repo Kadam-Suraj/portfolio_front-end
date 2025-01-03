@@ -4,7 +4,7 @@ import { Interface } from '../Constants/interface'
 import { urlFor } from '../Constants/imageBuilder';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getAllProjects } from '../api/project';
+import { getAllProjects } from '../api/sanity';
 import { Button } from '@/components/ui/button';
 
 const page = () => {

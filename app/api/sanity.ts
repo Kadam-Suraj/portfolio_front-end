@@ -10,3 +10,13 @@ export async function getProject(id: String) {
     const data = await client.fetch(`*[_type == 'projects' && _id == '${id}']`);
     return data as Interface;
 }
+
+export async function getLogos() {
+    const data = await client.fetch(`*[_type == 'logos']`)
+    return data as Interface;
+}
+
+export async function getTools() {
+    const data = await client.fetch(`*[_type == 'development']`);
+    return data as Interface;
+}

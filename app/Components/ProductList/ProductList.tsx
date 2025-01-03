@@ -1,24 +1,32 @@
-import React from 'react'
+"use client"
+
+import React, { useEffect, useState } from 'react'
 import { Interface } from '../../Constants/interface';
 import { urlFor } from '@/app/Constants/imageBuilder';
-import { client } from '../../Client/client';
 import { MdOutlineArrowOutward } from "react-icons/md";
 import Image from 'next/image';
 import { Motion } from '../MotionDiv/MotionDiv';
+import { getTools } from '@/app/api/sanity';
 
-async function getData() {
-    const data = await client.fetch(`*[_type == 'development']`);
-    return data as Interface;
-}
+const ProductList = () => {
 
+    const [tools, setTools] = useState([] as Interface[]);
 
-const ProductList = async () => {
-    const data = (await getData()) as any as Interface[];
+    useEffect(() => {
+
+        const fetchTools = async () => {
+            const data = await getTools();
+            setTools(data as any);
+        }
+
+        fetchTools();
+
+    }, []);
 
     return (
         <div>
             <div className='border-t-2 transition-all duration-700 select-none cursor-pointer'>
-                {data.map((item, idx) => {
+                {tools.map((item, idx) => {
                     return <div key={idx}>
                         <div className='relative h-28 w-full border-b-2 flex font-bold items-center justify-between text-[3em] bg-gradient-to-r hover:from-[#B16CEA] hover:via-[#FF5E69] hover:to-[#FFA84B] px-4 group'>
                             <h2>{item.name}</h2>
