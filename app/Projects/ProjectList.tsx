@@ -3,9 +3,9 @@
 import React from 'react';
 import { urlFor } from '../Constants/imageBuilder';
 import Image from 'next/image';
-import Button from '../Components/Button/Button';
 import Link from 'next/link';
 import { Interface } from '../Constants/interface';
+import { Button } from '@/components/ui/button';
 
 const ProjectList = ({ projects }) => {
     return (
@@ -41,7 +41,7 @@ const ProjectList = ({ projects }) => {
                                     </h2>
                                     <div className="flex items-center justify-between space-x-2">
                                         <span className="flex-1 line-clamp-1">{item.tag}</span>
-                                        <Button>{'Read more'}</Button>
+                                        <Button className='rounded-full'>Read more</Button>
                                     </div>
                                 </div>
                             </div>

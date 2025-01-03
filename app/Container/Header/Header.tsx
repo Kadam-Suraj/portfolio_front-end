@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react'
 import Navbar from '@/app/Components/Navbar/Navbar'
-import Button from '@/app/Components/Button/Button';
 import MobileMenu from '@/app/Components/MobileMenu/MobileMenu';
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { IoCloseOutline } from "react-icons/io5";
@@ -10,6 +9,7 @@ import { image } from '../../Constants/index';
 import Image from 'next/image';
 import Logo from '@/app/Components/Logo/Logo';
 import { ModeToggle } from '../../../components/ui/theme-mode'
+import { Button } from '@/components/ui/button';
 
 const Header = () => {
 
