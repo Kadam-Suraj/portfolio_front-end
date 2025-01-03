@@ -1,5 +1,5 @@
 "use client"
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Interface } from '@/app/Constants/interface'
 import { urlFor } from '@/app/Constants/imageBuilder';
 import Image from 'next/image';
@@ -10,14 +10,13 @@ import { Badge } from '@/components/ui/badge';
 import { MdOutlineChevronLeft } from "react-icons/md";
 import { getProject } from '@/app/api/project';
 
-const slug = ({ params }: { params: Promise<{ slug: string[] }> }) => {
-    const { slug } = use(params);
+const slug = ({ params }) => {
     const [project, setProject] = useState([] as Interface[]);
 
 
     useEffect(() => {
         async function getData() {
-            const data = await getProject(slug[0]);
+            const data = await getProject(params.slug[0]);
             setProject(data as any as Interface[]);
         }
         getData();
