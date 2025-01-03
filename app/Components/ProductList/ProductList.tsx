@@ -5,7 +5,6 @@ import { client } from '../../Client/client';
 import { MdOutlineArrowOutward } from "react-icons/md";
 import Image from 'next/image';
 import { Motion } from '../MotionDiv/MotionDiv';
-import { delay } from 'framer-motion';
 
 async function getData() {
     const data = await client.fetch(`*[_type == 'development']`);
