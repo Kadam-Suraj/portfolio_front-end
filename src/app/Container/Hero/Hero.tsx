@@ -41,7 +41,7 @@ const Hero = async () => {
                             </div>
                         </div>
                         <div className="flex-1 flex justify-center">
-                            <Image className='rounded-2xl w-fit h-96' src={urlFor(item.image).url()} width={500} height={500} quality={100} alt={item.name} loading='lazy' />
+                            <Image className='rounded-full max-w-72 aspect-square object-cover' src={urlFor(item.image).url()} width={500} height={500} quality={100} alt={item.name} loading='lazy' />
                         </div>
                     </div>
                 ))}

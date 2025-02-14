@@ -1,31 +1,44 @@
-import React from 'react';
+"use client"
+
+import React, { useEffect, useState } from 'react';
 import { client } from '@/app/Client/client';
 import { PortableText } from '@portabletext/react';
 import { Interface } from '@/app/Constants/interface';
+import GradientText from '@/app/Components/GradientText';
+import Loader from '@/components/Loader/Loader';
 
-async function getData() {
-    const data = await client.fetch(`*[_type == 'work_experience']`);
-    return data as Interface;
-}
+const Experience = () => {
+    const [data, setData] = useState([] as Interface[]);
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        (async () => {
+            const response = await client.fetch(`*[_type == 'work_experience']`) as Interface[];
+            setData(response);
+            setIsLoading(false);
+        })();
 
-const Experience = async () => {
-    const data = (await getData()) as unknown as Interface[];
+    }, [])
+
     return (
-        <div>
-            <div>
-                <h2 className='text-transparent bg-clip-text bg-gradient-to-r from-[#B16CEA] via-[#FF5E69] to-[#FFA84B] w-fit text-[3em] font-bold pb-14 my-auto'>Work Experience</h2>
-                <div>{data.map((item, idx) => {
-                        return <div key={idx} className='flex flex-col gap-5 justify-center border-b pb-5 pt-5 border-gray-400'>
-                            <h4 className='font-semibold'>{item.company}</h4>
-                            <div className='flex justify-between items-center gap-8'>
-                                <span className='font-light text-opacity-80 dark:text-white'>{item.role}</span>
-                                <span className='font-light text-opacity-80 dark:text-white'>
+        <div >
+            <GradientText className='text-4xl font-bold'>
+                Experience
+            </GradientText>
+            <div className='flex-col flex gap-5 items-center min-h-52'>
+                {
+                    isLoading ?
+                        <Loader className='mt-20' />
+                        :
+                        data.map((item, idx) => (
+                            <div key={idx} className='flex self-start justify-self-start flex-col gap-2 w-full justify-center border-b py-5'>
+                                <h4 className='font-semibold'>{item.company}</h4>
+                                <div className='flex justify-between items-center gap-4 font-light text-muted-foreground text-sm'>
+                                    <span >{item.role}</span>
                                     <PortableText value={item.working_period} />
-                                </span>
+                                </div>
                             </div>
-                        </div>
-                })}
-                </div>
+                        ))
+                }
             </div>
         </div>
     )

@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter as FontSans } from "next/font/google"
 import './globals.css';
-import Header from './Container/Header/Header';
-import Footer from './Container/Footer/Footer';
 import { ThemeProvider } from '@/components/theme-provider';
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { cn } from "../../lib/utils"
+import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import Outlet from './Outlet';
 

@@ -24,7 +24,7 @@ const Projects = () => {
                     </h2>
                 </div>
                 <div className='w-full sm:justify-items-end'>
-                    <div className='flex md:flex-row flex-col gap-4'>
+                    <div className='flex gap-4'>
                         <Link href={'/contact'}>
                             <Button>Get in touch</Button>
                         </Link>

@@ -1,65 +1,131 @@
 'use client'
-import React, { FormEvent } from 'react';
+import React from 'react';
 import { IoMdMail } from "react-icons/io";
-import { MdLocalPhone, MdOutlineDriveFileRenameOutline, MdCurrencyRupee } from "react-icons/md";
+import { MdLocalPhone } from "react-icons/md";
 import { Button } from '@/components/ui/button';
 import { useToast } from "@/components/ui/use-toast"
+import GradientText from '@/app/Components/GradientText';
+import Link from 'next/link';
+
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
+import {
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { FaUser } from 'react-icons/fa';
+import { FaMessage } from 'react-icons/fa6';
+
+const formSchema = z.object({
+    name: z.string().min(2, {
+        message: "Name must be at least 2 characters.",
+    }),
+    email: z.string().email({
+        message: "Invalid email.",
+    }),
+    message: z.string().min(2, {
+        message: "Message must be at least 10 characters.",
+    }),
+})
 
 const contact = () => {
     const { toast } = useToast()
 
-    const formHandler = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            name: "",
+            email: "",
+            message: "",
+        },
+    });
+
+    function onSubmit(values: z.infer<typeof formSchema>) {
+
+        console.log(values)
+        toast({
+            title: "Success",
+            description: "Thank you for your interest, w'll connect you soon",
+        })
     }
 
     return (
-        <div>
-            <div className='relative flex max-md:flex-col md:gap-12 gap-20 justify-between'>
-                <div className='gap-8 flex flex-col sm:top-56 w-full md:w-1/2 self-center'>
-                    <h1 className='bg-clip-text text-transparent bg-gradient-to-r w-fit from-[#B16CEA] via-[#FF5E69] to-[#FFA84B] font-bold text-[5em] leading-[1em]'>Get in touch</h1>
-                    <p className='w-10/12 text-[1.3em]'>Have a project in mind? Looking to partner or work together? Reach out through the form and i'll get back to you in the next 48 hours.</p>
-                    <div className='flex flex-col gap-5 pt-5'>
-                        <a href='mailto:surajkadam381@gmail.com' className='w-fit flex gap-3 items-center'>
-                            <IoMdMail className='text-[2em]' /> <span>surajkadam381@gmail.com</span>
-                        </a>
-                        <a href='tel:+91 7887686442' className='w-fit flex gap-3 items-center'>
-                            <MdLocalPhone className='text-[2em]' /> <span>+91 788 768 6442</span>
-                        </a>
-                    </div>
+        <div className='flex max-sm:flex-col gap-10 justify-between items-center'>
+            <div className='gap-4 flex flex-col flex-1 self-start'>
+                <GradientText className='font-bold text-4xl'>
+                    Get in touch
+                </GradientText>
+                <p className='text-muted-foreground text-sm'>Have a project in mind? Looking to partner or work together? Reach out through the form and i'll get back to you in the next 48 hours.</p>
+                <div className='flex flex-col gap-2 text-sm'>
+                    <Link href='mailto:surajkadam381@gmail.com' className='w-fit flex gap-3 items-center'>
+                        <IoMdMail /> <span>surajkadam381@gmail.com</span>
+                    </Link>
+                    <Link href='tel:+91 7887686442' className='w-fit flex gap-3 items-center'>
+                        <MdLocalPhone /> <span>+91 788 768 6442</span>
+                    </Link>
                 </div>
-                <div className='flex w-10/12 md:w-1/2 self-center'>
-                    <form className='w-full' onSubmit={formHandler}>
-                        <div className='flex flex-col gap-4'>
-                            <label htmlFor="" className='pt-5'>Your Name</label>
-                            <div className='flex items-center relative'>
-                                <MdOutlineDriveFileRenameOutline className='absolute left-5 text-[1.2em]' />
-                                <input className='dark:bg-[#1C1C22] bg-[#f8f8f8] px-14 py-5 md:px-14 md:py-3 rounded-md outline-none w-full' type="text" placeholder='Enter your name' required />
-                            </div>
-                            <label htmlFor="" className='pt-5'>Your E-mail</label>
-                            <div className='flex items-center relative'>
-                                <IoMdMail className='absolute left-5 text-[1.2em]' />
-                                <input className='dark:bg-[#1C1C22] bg-[#f8f8f8] px-14 py-5 md:px-14 md:py-3 rounded-md outline-none w-full' type="text" placeholder='Enter your E-mail' required />
-                            </div>
-                            <label htmlFor="" className='pt-5'>Your Budget</label>
-                            <div className='flex items-center relative'>
-                                <MdCurrencyRupee className='absolute left-5 text-[1.2em]' />
-                                <input className='dark:bg-[#1C1C22] bg-[#f8f8f8] px-14 py-5 md:px-14 md:py-3 rounded-md outline-none w-full' type="text" placeholder='1k - 3k' required />
-                            </div>
-                            <label htmlFor="" className='pt-5'>Tell me a bit more about what are you looking for?</label>
-                            <textarea className='dark:bg-[#1C1C22] bg-[#f8f8f8] px-8 py-5 md:px-5 md:py-3 rounded-md outline-none w-full resize-none' rows={5} placeholder='Write something' required />
-                            <div className='pt-5'>
-                                <Button onClick={() => {
-                                    toast({
-                                        title: "Success",
-                                        description: "Thank you for your interest, w'll connect you soon",
-                                    })
-                                }}>
-                                    {'Submit Now'}
-                                </Button>
-                            </div>
-                        </div>
+            </div>
+            <div className='flex flex-1 w-full self-center'>
+                <Form {...form} >
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full flex flex-col">
+                        <FormField
+                            control={form.control}
+                            name="name"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Your name *</FormLabel>
+                                    <FormControl>
+                                        <span className='flex relative items-center gap-2'>
+                                            <FaUser className='absolute left-3' />
+                                            <Input placeholder="enter your name" {...field} className='pl-10 bg-accent' />
+                                        </span>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Email *</FormLabel>
+                                    <FormControl>
+                                        <span className='flex relative items-center gap-2'>
+                                            <IoMdMail className='absolute left-3' />
+                                            <Input placeholder="enter your email" {...field} className='pl-10 bg-accent' />
+                                        </span>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="message"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Message</FormLabel>
+                                    <FormControl>
+                                        <span className='flex relative items-center gap-2'>
+                                            <FaMessage className='absolute left-3' />
+                                            <Input placeholder="enter your message" {...field} className='pl-10 bg-accent' />
+                                        </span>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <Button type="submit" className='self-end'>Submit</Button>
                     </form>
-                </div>
+                </Form>
             </div>
         </div>
     )

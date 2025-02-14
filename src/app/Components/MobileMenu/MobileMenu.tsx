@@ -2,27 +2,38 @@ import React from 'react'
 import { motion } from 'framer-motion';
 import { menu } from '@/app/Constants/NavMenu';
 import Link from 'next/link';
+import { IoHome, IoInformation, } from 'react-icons/io5';
+import { FaLaptopCode } from 'react-icons/fa';
+import { MdContacts } from 'react-icons/md';
 
 const MobileMenu = ({ data, fnc }: { data: boolean, fnc: any }) => {
 
+    const icons = [<IoHome />, <IoInformation />, <FaLaptopCode />, <MdContacts />]
+    const mobileMenuOptions = menu.map((item, idx) => ({ ...item, icon: icons[idx] }));
+
     return (
-        <motion.div
-            initial={{ x: 100 }}
-            whileInView={{ x: 0 }}
-            className={`${data ? 'flex' : 'hidden'} flex-col min-[880px]:hidden absolute top-[101%] right-0 left-0 gap-4`}>
-            <nav className='fixed w-full flex flex-col'>
-                <ul className='flex flex-col w-full h-screen bg-white dark:bg-black gap-[2em] items-center pt-[4em] text-[2em]'>
-                    {menu.map((item, idx) =>
-                    (<Link key={idx} href={item.link}>
-                        <li
+        <nav className="relative top-14 right-0 overflow-hidden">
+            <motion.div
+                initial={{ x: 100 }} // Start from the right
+                animate={{ x: 0 }} // Move into view
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="border-l border-y fixed bg-background h-screen top-14 right-0 max-[480px]:w-full w-60 px-2 py-5"
+            >
+                <ul className="flex flex-col gap-5 w-full">
+                    {mobileMenuOptions.map((item, idx) => (
+                        <Link
+                            key={idx}
                             onClick={fnc}
-                        >{item.name}</li>
-                    </Link>
+                            href={item.link}
+                            className="flex items-center gap-2 text-xl px-4 py-2 hover:bg-accent transition-colors rounded-md"
+                        >
+                            {item.icon}
+                            <li className="text-lg">{item.name}</li>
+                        </Link>
                     ))}
                 </ul>
-                {/* <Button data={"LET'S TALK"} /> */}
-            </nav>
-        </motion.div>
+            </motion.div>
+        </nav>
     )
 }
 

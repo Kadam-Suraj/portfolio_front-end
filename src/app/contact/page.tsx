@@ -5,7 +5,7 @@ import FAQ from '../Container/FAQ/FAQ';
 const contact = () => {
 
   return (
-    <div className='justify-center lg:max-w-[1560px] min-h-screen mx-auto mt-48 px-4'>
+    <div className='flex flex-col gap-20'>
       <ContactForm />
       <FAQ />
     </div>

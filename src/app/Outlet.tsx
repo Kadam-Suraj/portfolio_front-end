@@ -4,9 +4,9 @@ import Footer from './Container/Footer/Footer'
 
 const Outlet = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div className='min-h-screen relative flex flex-col'>
+        <div className='min-h-screen relative flex flex-col overflow-x-hidden'>
             <Header />
-            <main className='flex-grow max-w-7xl w-full p-5 mx-auto'>
+            <main className='flex-grow max-w-7xl h-full w-full p-5 mx-auto'>
                 {children}
             </main>
             <Footer />

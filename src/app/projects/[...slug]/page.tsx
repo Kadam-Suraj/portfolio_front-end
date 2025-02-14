@@ -9,67 +9,67 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { MdOutlineChevronLeft } from "react-icons/md";
 import { getProject } from '@/app/api/sanity';
+import Loader from '@/components/Loader/Loader';
+import GradientText from '@/app/Components/GradientText';
+import { PiLinkBold } from 'react-icons/pi';
 
 const slug = ({ params }: { params: any }) => {
-    const [project, setProject] = useState([] as Interface[]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [project, setProject] = useState({} as Interface);
+    const { slug }: { slug: string } = React.use(params);
 
     useEffect(() => {
         async function getData() {
-            const data = await getProject(params.slug[0]);
-            setProject(data as any as Interface[]);
+            const [data] = await getProject(slug) as any as Interface[];
+            setProject(data);
+            setIsLoading(false);
         }
         getData();
-    }, [])
+    }, []);
 
     return (
 
-        <div>
+        <div className='flex justify-center projects-center'>
             {
-                project.length ?
-                    <div className='min-h-[65vh] py-40 lg:max-w-[1560px] mx-auto px-5'>
-                        <div className='pb-10 flex items-center'>
-                            <Link href={`/projects`}>
-                                <Button>
-                                    <span className='pr-3 text-xl'> <MdOutlineChevronLeft></MdOutlineChevronLeft> </span>
-                                    Back
-                                </Button>
-                            </Link>
-                        </div>
-                        <div>{project.map((item, idx) => {
-                            return <div key={item._id}>
-                                <div className='flex max-[880px]:flex-col justify-between items-center gap-10'>
-                                    <div className='lg:w-1/2 h-full flex justify-center'>
-                                        <Image className='rounded-xl pointer-events-none' src={urlFor(item.image).url()} alt={item.caption ? item.caption : 'image'} width={500} height={500} draggable={false}></Image>
-                                    </div>
-                                    <div className='flex flex-col w-full min-[880px]:w-1/2 max-sm:px-0 max-[880px]:px-14 self-start'>
-                                        <h1 className='text-[3em] font-bold text-transparent bg-clip-text w-fit bg-gradient-to-r from-[#B16CEA] via-[#FF5E69] to-[#FFA84B]'>{item.name}</h1>
-                                        <div className='w-fit'>
-                                            <Badge variant={'outline'}>
-                                                {item.tag}
-                                            </Badge>
-                                        </div>
-                                        <div className='pt-5'>
-                                            <PortableText value={item.description}></PortableText>
-                                        </div>
-                                        <div className='pt-10 w-fit flex self-end'>
-                                            {item.link &&
-                                                <Link href={`${item.link ? item.link : ''}`} target={`${item.link ? '_blank' : ''}`}>
-                                                    <Button>View live version</Button>
-                                                </Link>
-                                            }
-                                        </div>
-                                    </div>
+                isLoading ?
+                    <Loader />
+                    :
+                    <div className="flex flex-col gap-5">
+                        <Link href={`/projects`}>
+                            <Button>
+                                <MdOutlineChevronLeft />
+                                Back
+                            </Button>
+                        </Link>
+                        <div>
+                            <div className='flex max-md:flex-col justify-between projects-center gap-10'>
+                                <div className='flex-1 flex items-center justify-center'>
+                                    <Image className='rounded-xl pointer-events-none aspect-auto w-auto h-auto' src={urlFor(project.image).url()} alt={project.caption ? project.caption : 'project_image'} width={500} height={500} priority draggable={false} />
+                                </div>
+                                <div className='flex flex-1 flex-col gap-2 self-start'>
+                                    <GradientText className='font-bold text-4xl'>
+                                        {project.name}
+                                    </GradientText>
+                                    <Badge variant={'outline'} className='w-fit font-light'>
+                                        {project.tag}
+                                    </Badge>
+                                    <span className='text-sm text-muted-foreground'>
+                                        <PortableText value={project.description} />
+                                    </span>
+                                    {project.link &&
+                                        <Link href={project.link ? project.link : ''} target={project.link ? '_blank' : ''} className='w-fit self-end'>
+                                            <Button className='flex projects-center gap-2 text-xs'><PiLinkBold size={14} /> View live version</Button>
+                                        </Link>
+                                    }
                                 </div>
                             </div>
-                        })}</div>
-
-                    </div>
-                    :
-                    <div className='text-center flex flex-col items-center gap-4 py-32 px-10 bg-gradient-to-r rounded-b-3xl from-[#B16CEA] via-[#FF5E69] to-[#FFA84B]'>
-                        <h2 className='font-bold text-[3em]'>No projects yet</h2>
+                        </div>
                     </div>
             }
-        </div>
+            {/* <div className='text-center flex flex-col projects-center gap-4 py-32 px-10 bg-gradient-to-r rounded-b-3xl from-[#B16CEA] via-[#FF5E69] to-[#FFA84B]'>
+                <h2 className='font-bold text-[3em]'>No projects yet</h2>
+            </div> */}
+        </div >
     )
 }
 
