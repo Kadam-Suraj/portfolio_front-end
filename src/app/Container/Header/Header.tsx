@@ -39,7 +39,7 @@ const Header = () => {
     }, [menu]);
 
     return (
-        <header className='fixed top-0 z-50 w-full border-b bg-background/60 backdrop-blur-md'>
+        <header className='sticky top-0 z-50 w-full border-b bg-background/60 backdrop-blur-md'>
             <div className='flex px-3 py-2 justify-between items-center max-w-7xl m-auto w-full'>
                 <Logo />
                 <div className='flex justify-between gap-3 items-center'>
