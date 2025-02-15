@@ -11,7 +11,6 @@ import { Button } from '@/components/ui/button';
 
 const Header = () => {
 
-
     const [menu, setMenu] = useState(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -28,9 +27,9 @@ const Header = () => {
 
         if (menu) {
             document.addEventListener("mousedown", handleClickOutside);
-            document.body.style.overflow = "hidden";
+            document.body.style.overflowY = "hidden";
         } else {
-            document.body.style.overflow = "auto";
+            document.body.removeAttribute("style");
         }
 
         return () => {
@@ -49,7 +48,7 @@ const Header = () => {
                             <Button>Let's talk</Button>
                         </Link>
                         <ModeToggle />
-                        <div ref={menuRef} className='flex md:hidden flex-col overflow-x-hidden'>
+                        <div ref={menuRef} className='flex md:hidden flex-col'>
                             <span onClick={toggleMenu}>
                                 {
                                     menu ?
@@ -59,8 +58,8 @@ const Header = () => {
                                 }
                             </span>
                             {
-                                menu &&
-                                <MobileMenu data={menu} fnc={toggleMenu} />
+                                // menu &&
+                                <MobileMenu state={menu} fnc={toggleMenu} />
                             }
                         </div>
                     </div>

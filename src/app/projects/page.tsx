@@ -29,7 +29,7 @@ const page = () => {
                 <div className='flex flex-col justify-center items-center gap-10'>
                     <div className='flex items-center gap-5 max-sm:flex-col pb-5'>
                         <h1 className='font-bold text-4xl flex-1 self-start'>
-                            Have a look at my <GradientText>projects</GradientText>
+                            Things i've <GradientText>built</GradientText>
                         </h1>
                         <p className='flex-1 text-sm font-light'>Explore my diverse range of projects and discover the exceptional craftsmanship and creativity that goes into each one. From innovative designs to meticulous attention to detail, my projects are a testament to quality and excellence. Whether you're seeking inspiration or looking for a unique addition to your space, my collection offers something for everyone. Take a closer look and be captivated by the beauty and ingenuity of my work.</p>
                     </div>

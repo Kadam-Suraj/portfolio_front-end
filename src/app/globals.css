@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 
 @layer base {
   :root {
@@ -60,11 +60,12 @@
   }
 }
 
- 
+
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -112,9 +113,12 @@
   }
 }
 
-
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 ::selection {
