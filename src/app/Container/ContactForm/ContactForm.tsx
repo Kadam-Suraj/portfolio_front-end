@@ -47,12 +47,20 @@ const contact = () => {
         },
     });
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    async function onSubmit(values: z.infer<typeof formSchema>) {
 
-        console.log(values)
+        const res = await fetch("/api/mail", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(values)
+        });
+
+        const data = await res.json();
         toast({
-            title: "Success",
-            description: "Thank you for your interest, w'll connect you soon",
+            title: data.title ?? "Error",
+            description: data.message ?? "Something went wrong!!!",
         })
     }
 

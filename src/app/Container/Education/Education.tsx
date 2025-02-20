@@ -20,19 +20,19 @@ const Education = () => {
     }, [])
 
     return (
-        <div>
+        <section className='flex flex-col gap-5'>
             <GradientText className='text-4xl font-bold'>
                 Education
             </GradientText>
             <div className='flex flex-col gap-5 items-center min-h-52'>
                 {
                     isLoading ?
-                        <Loader className='mt-20'/>
+                        <Loader className='mt-20' />
                         :
                         data.map((item, idx) => (
-                            <div key={idx} className='flex flex-col gap-2 w-full justify-center border-b py-5'>
+                            <div key={idx} className='grid w-full gap-1 border-b pb-3'>
                                 <h4 className='font-semibold'>{item.university}</h4>
-                                <div className='flex justify-between text-sm font-light text-muted-foreground items-center gap-4'>
+                                <div className='flex justify-between items-center gap-4 font-light text-muted-foreground text-sm'>
                                     <span className=''>{item.degree}</span>
                                     <PortableText value={item.passing} />
                                 </div>
@@ -40,7 +40,7 @@ const Education = () => {
                         ))
                 }
             </div>
-        </div>
+        </section>
     )
 }
 
