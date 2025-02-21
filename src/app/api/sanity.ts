@@ -20,3 +20,14 @@ export async function getTools() {
     const data = await client.fetch(`*[_type == 'development']`);
     return data as Interface;
 }
+
+export async function getBlogs() {
+    const data = await client.fetch(`*[_type == 'blogs']{_id, name, about, _createdAt}`);
+    return data as Interface;
+}
+
+export async function getBlogById(id: string) {
+    console.log("fetch id: ", id)
+    const data = await client.fetch(`*[_type == 'blogs' && _id == '${id}']`);
+    return data;
+}

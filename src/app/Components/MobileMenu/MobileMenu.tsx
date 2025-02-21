@@ -2,21 +2,23 @@ import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion';
 import { menu } from '@/app/Constants/NavMenu';
 import Link from 'next/link';
-import { IoHome, IoInformation, } from 'react-icons/io5';
+import { IoHome } from 'react-icons/io5';
 import { FaLaptopCode } from 'react-icons/fa';
 import { MdContacts } from 'react-icons/md';
 import { usePathname } from 'next/navigation';
+import { RiQuillPenAiFill } from "react-icons/ri";
+import { FaChildReaching } from 'react-icons/fa6';
 
 const MobileMenu = ({ state, fnc }: { state?: boolean, fnc: any }) => {
     const pathname = usePathname();
 
-    const icons = [<IoHome />, <IoInformation />, <FaLaptopCode />, <MdContacts />]
+    const icons = [<IoHome />, <RiQuillPenAiFill />, <FaChildReaching />, <FaLaptopCode />, <MdContacts />]
     const mobileMenuOptions = menu.map((item, idx) => ({ ...item, icon: icons[idx] }));
 
     return (
         <AnimatePresence>
             {state && (
-                <div key="menu-wrapper" className="fixed top-14 right-0 z-50 max-w-72 w-full">
+                <div key="menu-wrapper" className="fixed top-[52px] right-0 z-50 max-w-60 w-full">
                     <motion.nav
                         key="mobile-menu"
                         initial={{ x: 100, opacity: 0 }}  // Start off-screen
@@ -34,7 +36,7 @@ const MobileMenu = ({ state, fnc }: { state?: boolean, fnc: any }) => {
                                     className={`${pathname == item.link && "bg-accent"} flex items-center gap-2 text-xl px-4 py-2 hover:bg-accent transition-colors rounded-md`}
                                 >
                                     {item.icon}
-                                    <li className="text-lg">{item.name}</li>
+                                    <li className="text-base">{item.name}</li>
                                 </Link>
                             ))}
                         </ul>

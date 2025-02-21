@@ -4,6 +4,10 @@ export const menu = [
         link: "/"
     },
     {
+        name: "Blogs",
+        link: "/blog"
+    },
+    {
         name: "About",
         link: "/about"
     },

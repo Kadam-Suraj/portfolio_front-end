@@ -8,12 +8,13 @@ import Link from 'next/link';
 import Logo from '@/app/Components/Logo/Logo';
 import { ModeToggle } from '@/components/ui/theme-mode'
 import { Button } from '@/components/ui/button';
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
 
     const [menu, setMenu] = useState(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
-
+    
     function toggleMenu() {
         setMenu((prev) => !prev);
     }
@@ -48,7 +49,7 @@ const Header = () => {
                             <Button>Let's talk</Button>
                         </Link>
                         <ModeToggle />
-                        <div ref={menuRef} className='flex md:hidden flex-col'>
+                        <div ref={menuRef} className='relative flex md:hidden flex-col'>
                             <span onClick={toggleMenu}>
                                 {
                                     menu ?
@@ -65,7 +66,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-        </header>
+        </header >
     )
 }
 

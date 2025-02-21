@@ -22,6 +22,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { FaUser } from 'react-icons/fa';
 import { FaMessage } from 'react-icons/fa6';
+import { useRef } from "react";
 
 const formSchema = z.object({
     name: z.string().min(2, {
@@ -33,7 +34,16 @@ const formSchema = z.object({
     message: z.string().min(2, {
         message: "Message must be at least 10 characters.",
     }),
-})
+});
+
+function useDebounce(fn: any, delay: number) {
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+    return (...args: any) => {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(() => fn(...args), delay);
+    };
+};
 
 const contact = () => {
     const { toast } = useToast()
@@ -47,8 +57,7 @@ const contact = () => {
         },
     });
 
-    async function onSubmit(values: z.infer<typeof formSchema>) {
-
+    const onSubmit = useDebounce(async (values: z.infer<typeof formSchema>) => {
         const res = await fetch("/api/mail", {
             method: "POST",
             headers: {
@@ -62,7 +71,7 @@ const contact = () => {
             title: data.title ?? "Error",
             description: data.message ?? "Something went wrong!!!",
         })
-    }
+    }, 3000);
 
     return (
         <div className='flex max-sm:flex-col gap-10 justify-between items-center'>

@@ -1,8 +1,4 @@
 import React from 'react';
-// import { client } from '@/app/Client/client';
-// import { urlFor } from '@/app/Constants/imageBuilder';
-// import Image from 'next/image';
-// import { RxDividerHorizontal } from "react-icons/rx";
 import Button from '@/app/Components/Button/primaryButton';
 import Button2 from '@/app/Components/Button/secondaryButton';
 import ProductList from '../../Components/ProductList/ProductList';
