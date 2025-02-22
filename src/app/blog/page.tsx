@@ -9,7 +9,7 @@ import Link from "next/link";
 import { MdOutlineArrowOutward } from 'react-icons/md';
 import BlogCategory from "@/components/Blog/BlogCategory";
 import { Badge } from "@/components/ui/badge";
-import { useCategory } from "@/context/blogCategoryProvider";
+import { useCategory } from "@/context/BlogCategoryProvider";
 
 const BlogHeader = () => (
     <div className="blog-header flex gap-5 max-sm:flex-col">

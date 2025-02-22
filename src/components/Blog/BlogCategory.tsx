@@ -1,7 +1,7 @@
 "use client"
 
 import { getBlogCategories } from "@/app/api/sanity";
-import { useCategory } from "@/context/blogCategoryProvider";
+import { useCategory } from "@/context/BlogCategoryProvider";
 import React, { useEffect, useState } from "react";
 
 interface Interface {
