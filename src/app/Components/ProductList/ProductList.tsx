@@ -39,7 +39,7 @@ const ProductList = () => {
                                 <Image
                                     src={urlFor(item.image).url()} width={500} height={500} loading='lazy'
                                     alt={item.name}
-                                    className={`rounded-lg w-full h-full object-contain aspect-square ${item?.name.toLowerCase() == "github" && "dark:invert"}`} draggable={false}>
+                                    className={`rounded-lg w-full h-full object-contain aspect-square ${(item?.name.toLowerCase() == "github" || item?.name.toLowerCase() == "nextjs") && "dark:invert"}`} draggable={false}>
                                 </Image>
                             </Motion>
                         </div>

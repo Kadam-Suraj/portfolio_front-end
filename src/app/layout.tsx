@@ -6,6 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import Outlet from './Outlet';
+import { BlogCategoryProvider } from '@/context/blogCategoryProvider';
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -43,9 +44,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Outlet>
-            {children}
-          </Outlet>
+          <BlogCategoryProvider>
+            <Outlet>
+              {children}
+            </Outlet>
+          </BlogCategoryProvider>
           <Toaster />
         </ThemeProvider>
         <SpeedInsights />

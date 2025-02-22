@@ -33,12 +33,12 @@ const Experience = () => {
                         data.map((item, idx) => (
                             <div key={idx} className='grid w-full gap-2 border-b pb-3'>
                                 <h4 className='font-semibold'>{item.company}</h4>
-                                <div className='flex justify-between items-center gap-4 font-light text-muted-foreground text-sm'>
+                                <div className='flex justify-between items-center prose prose-sm gap-4 font-light text-muted-foreground text-sm'>
                                     <span >{item.role}</span>
                                     <PortableText value={item.working_period} />
                                 </div>
                                 <Separator />
-                                <span className='text-muted-foreground text-sm'>
+                                <span className='text-muted-foreground prose prose-sm text-sm'>
                                     <h6 className='font-semibold'>Description:</h6>
                                     <PortableText value={item.description} />
                                 </span>

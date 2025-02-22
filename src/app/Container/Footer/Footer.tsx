@@ -21,7 +21,7 @@ const Footer = () => {
                 <div className='flex flex-col gap-5'>
                     <div className='flex flex-wrap justify-between items-center gap-5'>
                         <Logo />
-                        <ul className='flex items-center gap-4'>
+                        <ul className='flex items-center flex-wrap gap-4'>
                             {menu.map((item, idx) => (
                                 <Link key={idx} href={item.link} className='hover:underline text-sm hover:text-accent-foreground transition-[color] duration-300 underline-offset-4 text-muted-foreground'>
                                     <li>{item.name}</li>

@@ -22,12 +22,26 @@ export async function getTools() {
 }
 
 export async function getBlogs() {
-    const data = await client.fetch(`*[_type == 'blogs']{_id, name, about, _createdAt}`);
+    const data = await client.fetch(`*[_type == 'blogs']{_id, name, about, _createdAt,category->{title}}`);
     return data as Interface;
 }
 
 export async function getBlogById(id: string) {
-    console.log("fetch id: ", id)
-    const data = await client.fetch(`*[_type == 'blogs' && _id == '${id}']`);
+    const data = await client.fetch(`*[_type == 'blogs' && _id == '${id}']{..., category->{title}}`);
+    return data;
+}
+
+export async function getBlogCategories() {
+    const data = await client.fetch(`*[_type == 'blogs']{category->{title}}`);
+    return data;
+}
+
+export async function filterBlogs(title: string) {
+    const query =
+        title === "All"
+            ? `*[_type == "blogs"]| order(_createdAt desc){_id, name, about, _createdAt, category->{title}}`
+            : `*[_type == "blogs" && category->title == $title]| order(_createdAt desc){_id, name, about, _createdAt, category->{title}}`;
+
+    const data = await client.fetch(query, title !== "All" ? { title } : {});
     return data;
 }
