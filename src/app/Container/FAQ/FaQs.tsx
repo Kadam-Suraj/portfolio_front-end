@@ -43,7 +43,7 @@ const FaQs = () => {
             <Accordion key={idx} type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
                 <AccordionTrigger className='text-base'>{item.question}</AccordionTrigger>
-                <AccordionContent className='text-sm prose prose-sm text-muted-foreground prose-a:text-blue-500 prose-a:no-underline'>
+                <AccordionContent className='text-sm prose prose-sm dark:prose-invert text-muted-foreground prose-a:text-blue-500 prose-a:no-underline'>
                   <PortableText value={item.answer} components={portableTextComponent} />
                 </AccordionContent>
               </AccordionItem>

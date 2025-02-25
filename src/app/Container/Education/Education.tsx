@@ -32,7 +32,7 @@ const Education = () => {
                         data.map((item, idx) => (
                             <div key={idx} className='grid w-full gap-1 border-b pb-3'>
                                 <h4 className='font-semibold'>{item.university}</h4>
-                                <div className='flex justify-between items-center prose prose-sm gap-4 font-light text-muted-foreground text-sm'>
+                                <div className='flex justify-between items-center prose prose-sm dark:prose-invert gap-4 font-light text-muted-foreground text-sm'>
                                     <span className=''>{item.degree}</span>
                                     <PortableText value={item.passing} />
                                 </div>

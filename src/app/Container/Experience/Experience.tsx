@@ -38,7 +38,7 @@ const Experience = () => {
                                     <PortableText value={item.working_period} />
                                 </div>
                                 <Separator />
-                                <span className='text-muted-foreground prose prose-sm text-sm'>
+                                <span className='text-muted-foreground prose prose-sm dark:prose-invert text-sm'>
                                     <h6 className='font-semibold'>Description:</h6>
                                     <PortableText value={item.description} />
                                 </span>

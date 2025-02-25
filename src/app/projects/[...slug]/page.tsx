@@ -53,7 +53,7 @@ const slug = ({ params }: { params: any }) => {
                                     <Badge variant={'outline'} className='w-fit font-light'>
                                         {project.tag}
                                     </Badge>
-                                    <span className='prose-sm prose'>
+                                    <span className='prose-sm prose dark:prose-invert'>
                                         <PortableText value={project.description} />
                                     </span>
                                     {project.link &&
