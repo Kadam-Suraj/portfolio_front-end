@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import { IoMdMail } from "react-icons/io";
 import { MdLocalPhone } from "react-icons/md";
 import { Button } from '@/components/ui/button';
@@ -23,6 +23,8 @@ import { Input } from "@/components/ui/input"
 import { FaUser } from 'react-icons/fa';
 import { FaMessage } from 'react-icons/fa6';
 import { useRef } from "react";
+import Loader from '@/components/Loader/Loader';
+import { BiMailSend } from "react-icons/bi";
 
 const formSchema = z.object({
     name: z.string().min(2, {
@@ -46,7 +48,9 @@ function useDebounce(fn: any, delay: number) {
 };
 
 const contact = () => {
-    const { toast } = useToast()
+    const { toast } = useToast();
+    const [isLoading, setIsLoading] = useState<Boolean>(false);
+
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -58,6 +62,7 @@ const contact = () => {
     });
 
     const onSubmit = useDebounce(async (values: z.infer<typeof formSchema>) => {
+        setIsLoading(true);
         const res = await fetch("/api/mail", {
             method: "POST",
             headers: {
@@ -67,10 +72,12 @@ const contact = () => {
         });
 
         const data = await res.json();
+        setIsLoading(false);
         toast({
             title: data.title ?? "Error",
             description: data.message ?? "Something went wrong!!!",
         })
+
     }, 3000);
 
     return (
@@ -140,7 +147,14 @@ const contact = () => {
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit" className='self-end'>Submit</Button>
+                        {
+                            isLoading ?
+                                <Loader className='w-fit self-end font-normal' title='Sending...' />
+                                :
+                                <Button type="submit" className='self-end w-fit min-w-28 flex items-center gap-2'>
+                                    <BiMailSend size={20} /> Submit
+                                </Button>
+                        }
                     </form>
                 </Form>
             </div>

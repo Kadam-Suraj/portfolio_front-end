@@ -29,33 +29,33 @@ const slug = ({ params }: { params: any }) => {
 
     return (
 
-        <div className='flex justify-center projects-center'>
+        <div className='flex justify-center'>
             {
                 isLoading ?
                     <Loader />
                     :
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-5 w-full">
                         <Link href={`/projects`}>
                             <Button>
                                 <MdOutlineChevronLeft />
                                 Back
                             </Button>
                         </Link>
-                        <div>
-                            <div className='flex max-md:flex-col justify-between projects-center gap-10'>
-                                <div className='flex-1 flex items-center justify-center'>
-                                    <Image className='rounded-xl pointer-events-none aspect-auto w-auto h-auto' src={urlFor(project.image).url()} alt={project.caption ? project.caption : 'project_image'} width={500} height={500} priority draggable={false} />
+                        <div className='w-full'>
+                            <div className='flex flex-col gap-5 w-full'>
+                                <div className='flex justify-center items-center w-full'>
+                                    <Image className='rounded-xl pointer-events-none aspect-auto w-full max-h-60 object-contain' src={urlFor(project.image).url()} alt={project.caption ? project.caption : 'project_image'} width={500} height={500} priority draggable={false} />
                                 </div>
-                                <div className='flex flex-1 flex-col gap-2 self-start'>
+                                <div className='flex flex-col gap-2 self-start w-full'>
                                     <GradientText className='font-bold text-4xl'>
                                         {project.name}
                                     </GradientText>
                                     <Badge variant={'outline'} className='w-fit font-light'>
                                         {project.tag}
                                     </Badge>
-                                    <span className='prose-sm prose dark:prose-invert'>
+                                    <div className='prose-sm prose dark:prose-invert w-full'>
                                         <PortableText value={project.description} />
-                                    </span>
+                                    </div>
                                     {project.link &&
                                         <Link href={project.link ? project.link : ''} target={project.link ? '_blank' : ''} className='w-fit self-end'>
                                             <Button className='flex projects-center gap-2 text-xs'><PiLinkBold size={14} /> View live version</Button>

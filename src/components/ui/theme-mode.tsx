@@ -25,7 +25,7 @@ export function ModeToggle() {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="my-3">
         <DropdownMenuItem className="flex items-center gap-2" onClick={() => setTheme("light")}>
           <PiSunFill /> Light
         </DropdownMenuItem>
