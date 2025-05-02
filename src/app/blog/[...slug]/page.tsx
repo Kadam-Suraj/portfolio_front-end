@@ -5,7 +5,6 @@ import { getBlogById } from "@/app/api/sanity";
 import Loader from "@/components/Loader/Loader";
 import Image from "next/image";
 import { urlFor } from "@/app/Constants/imageBuilder";
-import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 import Error from "@/components/Error/Error";
 import RichTextRenderer from "@/app/Components/RichTextRenderer";

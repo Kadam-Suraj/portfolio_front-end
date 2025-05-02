@@ -10,7 +10,7 @@ const toKebabCase = (str: string) => {
 }
 
 // Extract plain text from children
-const getTextFromChildren = (children: React.ReactNode[]) => {
+const getTextFromChildren = (children: any) => {
     if (!children) return '';
     return children.map(child => (typeof child === 'string' ? child : child?.props?.children || '')).join(' ');
 };
