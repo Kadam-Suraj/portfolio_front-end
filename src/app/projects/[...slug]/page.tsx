@@ -44,7 +44,7 @@ const slug = ({ params }: { params: any }) => {
                         <div className='w-full'>
                             <div className='flex flex-col gap-5 w-full'>
                                 <div className='flex justify-center items-center w-full'>
-                                    <Image className='rounded-xl pointer-events-none aspect-auto w-full max-h-60 object-contain' src={urlFor(project.image).url()} alt={project.caption ? project.caption : 'project_image'} width={500} height={500} priority draggable={false} />
+                                    <Image className='rounded-xl pointer-events-none aspect-auto w-full max-w-[40rem] object-cover' src={urlFor(project.image).url()} alt={project.caption ? project.caption : 'project_image'} width={500} height={500} priority draggable={false} />
                                 </div>
                                 <div className='flex flex-col gap-2 self-start w-full'>
                                     <GradientText className='font-bold text-4xl'>
@@ -53,7 +53,7 @@ const slug = ({ params }: { params: any }) => {
                                     <Badge variant={'outline'} className='w-fit font-light'>
                                         {project.tag}
                                     </Badge>
-                                    <div className='prose-sm prose dark:prose-invert w-full'>
+                                    <div className='prose-sm prose dark:prose-invert min-w-full'>
                                         <PortableText value={project.description} />
                                     </div>
                                     {project.link &&
