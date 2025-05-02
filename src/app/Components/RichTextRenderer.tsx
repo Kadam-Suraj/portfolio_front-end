@@ -1,4 +1,4 @@
-import { PortableText } from '@portabletext/react';
+import { PortableText, PortableTextComponentProps, PortableTextBlock } from '@portabletext/react';
 
 // Helper to convert text to kebab-case
 const toKebabCase = (str: string) => {
@@ -16,8 +16,8 @@ const getTextFromChildren = (children: any) => {
 };
 
 const components = {
-    block: ({ children, value }: { children: React.ReactNode[], value: { style: string } }) => {
-        const tag = getTag(value.style);
+    block: ({ children, value }: PortableTextComponentProps<PortableTextBlock>) => {
+        const tag = getTag(value.style || 'p');
         const textContent = getTextFromChildren(children);
         const kebabId = textContent ? toKebabCase(textContent) : undefined;
 
