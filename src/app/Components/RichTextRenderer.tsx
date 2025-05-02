@@ -12,7 +12,7 @@ const toKebabCase = (str: string) => {
 // Extract plain text from children
 const getTextFromChildren = (children: any) => {
     if (!children) return '';
-    return children.map(child => (typeof child === 'string' ? child : child?.props?.children || '')).join(' ');
+    return children.map((child: any) => (typeof child === 'string' ? child : child?.props?.children || '')).join(' ');
 };
 
 const components = {
